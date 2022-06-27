@@ -28,13 +28,14 @@
 
     //2. ES6中创建方式
     class Fn{
-        // 等价于构造函数体
+        // constructor 就是当前类的函数体
         constructor(n,m){//...arg
             this.x=100
             console.log(n,m)//10,20
         }
 
         // 直接写的方法就是加在原型上的 Fn.prototype.getX
+        // 在这些位置编写的属性， 都是属于当前类的共有属性
         getX(){
             console.log(this.x);
         }   
