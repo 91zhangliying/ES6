@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+  function person() {
+            this.name = "jack";
+            this.age = 10;
+        }
+
+        person.prototype.constructor === person;
+        person.prototype.eat = function () { }
+        person.prototype.play = function () { }
+        person.keys = 666;//=>keys是person静态属性
+        var p = new person();   
+
+        
+         class people {
+            constructor(...arg) {
+                //constructor 就是当前类的函数体
+                this.name = "json";
+                this.age = 10;
+                console.log(arg);//=>[1,2,3,4.5]
+            }
+
+             //在这些位置编写的属性， 都是属于当前类的共有属性
+            eat() {               
+                console.log(this.name)//=>'json'
+            }
+            play() { }
+            static keys = 666
+
+        }
+        var p2 = new people(1, 2, 3, 4, 5);
+        console.log(p2);//=>{name:"json",age:10}
+    </script>
+</body>
+</html>

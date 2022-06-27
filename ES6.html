@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+
+<body>
+
+
+    <script>
+        /* #### 4.解构赋值
+        >让左侧出现和右侧值相同结构，以此快速获取到我们需要的内容真实项目中最常用的就是对数组和对象的结构赋值 */
+
+        /* >1.数组的结构赋值 */
+        let ary = [10, 20, 30, 40, 50];
+        let n = ary[0],
+            m = ary[1],
+            x = ary.slice(2);
+        console.log(n, m, x);
+        //=>10,20,30
+
+        /* >2. 解构赋值写法
+        ...x扩展运算符：把剩下的内容存储到x中（x是个数组），但是他只能出现在最后 */
+        let ary = [10, 20, 30, 40, 50];
+        let [n, m, ...x] = ary;
+        console.log(n, m, x);
+        //=>10 20[30,40,50]
+
+        /* >3.数组中不出现第二项值 */
+        let ary = [10, 20, 30, 40, 50];
+        let [n, , m] = ary;
+        console.log(n, m); //=>10 30
+
+        /* >4.如果没有这一项，我们可以基于等号赋值默认值 */
+        let ary = [10, 20, 30, 40, 50];
+        let [n, , m, , , x = 0] = ary;
+        console.log(n, m, x); //=>10 30 0
+
+        /* >5.数组嵌套解构取值 */
+        let ary = [10, [20, 30[40, 50]]];
+        let [n, [, , [, m]]] = ary
+        console.log(n, m); //=>10 50
+
+        /* >6.对象的解构赋值 */
+        let obj = {
+            name: '王三峰 ',
+            age: 79,
+            sex: 'BOY',
+            friends: ['唐二一', '郭一', '王一二', '郭三']
+        };
+        let {
+            name,
+            sex
+        } = obj;
+        console.log(name, sex); //=>王三峰  BOY
+
+        /* >7.:  冒号相当于给获取的结果设置了一个别名（变量名）；创建了一个叫做nianling的变量存储于了obj.age的值 */
+        let obj = {
+            name: '王三峰 ',
+            age: 79,
+            sex: 'BOY',
+            friends: ['唐二一', '郭一', '王一二', '郭三']
+        };
+        let {
+            age: nianling
+        } = obj;
+        console.log(nianling); //=>79
+
+        /* >8.=  等号给获取的记过设置默认值（没有这个属性走的是默认值） */
+        let obj = {
+            name: '王三峰 ',
+            age: 79,
+            sex: 'BOY',
+            friends: ['唐二一', '郭一', '王一二', '郭三']
+        };
+        let {
+            height = "180cm"
+        } = obj;
+        console.log(height); //=>'180cm'
+
+        /* >9.多维对象获取 */
+        let obj = {
+            name: '王三峰 ',
+            age: 79,
+            sex: 'BOY',
+            friends: ['唐二一', '郭一', '王一二', '郭三']
+        };
+        let {
+            name,
+            friends: [firstFriend]
+        } = obj;
+        console.log(name, firstFriend); //=>王三峰 唐二一
+
+   
+
+        /* #### 5.‘...’的三个作用 */
+        // >1.扩展运算符（多用在结构赋值中）
+        let [n, ...m] = [12, 23, 34];
+        console.log(n, m)
+            //n:12
+            //m:[23,34]
+
+        // >2.展开运算符（多用在传递实参中）
+        let ary = [12, 23, 13, 24, 10];
+        let min = Math.min(...ary);
+        console.log(min); //=>10
+
+        //数组克隆（浅克隆）
+        let ary = [12, 23, 13, 24, 10];
+        let cloneAry = [...ary];
+        console.log(cloneAry); //=>[12,23,13,24,10]
+
+        //对象克隆（浅克隆）
+        let obj = {
+            name: '圆圆',
+            age: 16
+        };
+        let cloneObj = {...obj,
+            sex: 'girl',
+            age: 17
+        };
+        console.log(cloneObj); //=>{name: "圆圆", age: 17, sex: "girl"}
+
+        // >3.剩余运算符（多用在接受实参中）
+        let fn = (n, ...arg) => {
+            //n:10
+            //ary:[20,30]
+        }
+        fn(10, 20, 30);
+
+        // >#### 6.class创建类
+        class Fn {
+            //1.等价于之前的构造函数体
+            constructor() {
+                this.x = 100;
+            }
+
+            //2.直接写的方法就是加在原型上的
+            getX() {
+                console.log(this.x);
+            }
+
+            //3.给实例设置的私有属性
+            y = 200;
+            //4.前面设置static的：把当前FN当做普通对象设置的键值对
+            static queryX() {}
+            static z = 300;
+        }
+
+        //2.也可以在外面单独这样子写
+        Fn.prototype.getY = function() {}
+
+        let f = new Fn(10, 20);
+        f.getX();
+        FN.queryX();
+
+        Fn(); //=>Uncaught TypeError:class constructor Fn cannot be invoked 'new'=>class创建的类只能new执行，不能当做普通函数执行
+
+        /*  #### 7.ES6中的模板字符串 */
+
+        let year = '2019',
+            month = '8',
+            day = '09';
+        //=>题目：'您好，小伙伴！今天是2019年08月09日，今天天气很糟糕，马上就要下大雨了，呵呵呵~'
+        //1.传统的拼接方式
+        let res = `'您好，小伙伴！今天是 '+year+'年'年'+month+'月 +day+'日',今天天气很糟糕,马上就要下大雨了，呵呵呵~`;
+
+        //页面中的机构拼接：传统的拼接方式
+        let ID = 'box';
+        let html = `'<ul class=''list clear'' id='' '+ID+' ''>'`;
+
+        /* 我们真实项目中会大量进行字符串拼接操作（尤其是需要动态绑定数据：把现有的HTMl代码拼接成数据的HTMl字符创），传统的ES3语法模式下字符串非常麻烦
+         */
+
+        let year = '2019',
+            month = '8',
+            day = '09';
+        //=>2.反引号（撇）tab健上面的（ES6模板字符串语法）
+        //=> ${}模板字符串中书写JS表达式的方式（凡是有输出结果的都可以被称为js表达式，一般都是一行搞定的）
+        let res = `您好，小伙伴！今天是${year}年${month}月${day}日，今天天气很糟糕，马上就要下大约了，呵呵！~~~~`;
+
+        //2.页面中的机构拼接：ES6模板字符串拼接方法
+        let ID = 'box';
+        let HTML = `<ul class= 'list clear' id='${ID}'>
+  <li><a href='javascript::'>
+      <img src='img/1.jpg' alt=''>
+      <p></p>
+      <span>￥3899</span>
+      </a></li>
+    </ul>`;
+    </script>
+</body>
+
+</html>

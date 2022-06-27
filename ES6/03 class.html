@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //  class创建类
+    //1. ES3/ES5中创建类的方法
+    function Fn1(){
+        this.x=100
+    } 
+    Fn1.prototype.getx1=function(){
+        console.log(this.x);
+    }
+
+    var f1=new Fn1()
+    f1.getx1()
+    // 也可以把它当作普通的函数执行
+    Fn1()
+    // 还可以把Fn当作普通的对象设置键值对
+    Fn1.queryX=function(){}
+    Fn1.queryX()
+  
+
+    //2. ES6中创建方式
+    class Fn{
+        // 等价于构造函数体
+        constructor(n,m){//...arg
+            this.x=100
+            console.log(n,m)//10,20
+        }
+
+        // 直接写的方法就是加在原型上的 Fn.prototype.getX
+        getX(){
+            console.log(this.x);
+        }   
+
+        //前面设置static的：把当前Fn当作普通对象设置的键值对
+        static queryX(){
+            console.log(`私有属性`);
+        }
+
+        // 给实例设置了私有属性 静态属性
+        static y=100
+        // 给实例设置的私有属性
+        str=203
+    }
+    // 也可以单独写在外面单独这样子写
+    Fn.prototype.getY=function(){}
+    Fn.prototype.y=200
+    Fn.z=300
+
+    let f=new Fn(10,20);
+    console.dir(f)
+    f.getX()
+    Fn.queryX()
+    Fn();//报错不能当作普通函数执行
+    console.log(Fn.qwer);
+    console.dir(Fn)
+    console.dir(f)
+         
+    </script>
+</body>
+</html>
