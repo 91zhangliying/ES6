@@ -8,36 +8,37 @@
 </head>
 <body>
     <script>
-  function person() {
-            this.name = "jack";
-            this.age = 10;
-        }
+function person() {
+    this.name = "jack";
+    this.age = 10;
+}
 
-        person.prototype.constructor === person;
-        person.prototype.eat = function () { }
-        person.prototype.play = function () { }
-        person.keys = 666;//=>keys是person静态属性
-        var p = new person();   
+person.prototype.constructor === person;
+person.prototype.eat = function () { }
+person.prototype.play = function () { }
+person.keys = 666;//=>keys是person静态属性
+var p = new person();  
+p()
 
-        
-         class people {
-            constructor(...arg) {
-                //constructor 就是当前类的函数体
-                this.name = "json";
-                this.age = 10;
-                console.log(arg);//=>[1,2,3,4.5]
-            }
 
-             //在这些位置编写的属性， 都是属于当前类的共有属性
-            eat() {               
-                console.log(this.name)//=>'json'
-            }
-            play() { }
-            static keys = 666
+class people {
+    constructor(...arg) {
+    //constructor 就是当前类的函数体
+    this.name = "json";
+    this.age = 10;
+    console.log(arg);//=>[1,2,3,4.5]
+    }
 
-        }
-        var p2 = new people(1, 2, 3, 4, 5);
-        console.log(p2);//=>{name:"json",age:10}
+    //在这些位置编写的属性， 都是属于当前类的共有属性
+    eat() {               
+    console.log(this.name)//=>'json'
+    }
+    play() { }
+    static keys = 666
+}
+
+var p2 = new people(1, 2, 3, 4, 5);
+console.log(p2);//=>{name:"json",age:10}
     </script>
 </body>
 </html>

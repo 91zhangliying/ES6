@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+     
+    <script>
+      // forEach使用
+      let ary = [10, 20, 30, 40];
+      let aryObj = [{ a: 100 }, { b: 200 }, { c: 300 }];
+
+      /* aryObj.forEach((item,index)=>{
+        console.log(item,index);
+    })
+    Object.keys(aryObj) */
+
+      /* ary.forEach((item,index)=>{
+        console.log(item,index);
+    }) */
+
+      /* let aa= ary.map((item,index)=>{
+       return '0' + item      
+    })
+    console.log(aa); 
+   */
+
+      /*  let aa = ary.some((item,index)=>{
+      return item>30
+    })
+   console.log(aa); */
+
+      /* let bb=ary.every((item,index)=>{
+    return item>9
+  })
+  console.log(bb); */
+
+      /*  let ary=[10,20,30,40]
+ let dc= ary.filter((item,index)=>{
+    return item>20
+  })
+console.log(dc); */
+
+      /* let dd=ary.reduce((prev,next)=>{
+    return prev+=next;
+})
+console.log(dd); */
+
+let ary3 = [10, 20, 30, 40];
+let res6 = ary3.reduce((prev, next) => {
+    return prev + next;
+},100);
+console.log(res6);
+
+Object.is(NaN,NaN)
+Object.is(1,1)
+Object.is(+0,-0)
+
+let obj1={a:10,b:40,c:30}
+let obj2={f:90,d:20,o:80}
+// let obj=Object.assign(obj1,obj2)
+console.log(Object.keys(obj1));
+console.log(Object.values(obj1));
+
+
+let monty=12
+let year=20
+let money=30
+let yar=40
+let mod=39
+let timeAry=`${monty}年${year}月${money}日 ${yar}时${mod}分`
+console.log(timeAry);
+
+
+let dom=`<ul>
+          <li>我是li01</li>
+          <li>我是li02</li>
+          <li>我是li03</li>
+        </ul>`
+
+
+
+</script>
+  </body>
+</html>

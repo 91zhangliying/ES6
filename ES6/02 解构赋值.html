@@ -69,110 +69,111 @@ let ary1=[12,[20,23,[40,50,58]]]
 let [e,[,,[,,r]]]=ary1
 console.log(e,r);//12,58
 
-    let obj={
-        name:'json',
-        age:79,
-        sex:"BOY",
-        friends:['jack','friend','pack']
-    }
-    let {name,age,sex}=obj       
-    console.log(name,age,sex)//'json' 79 'BOY'
+let obj={
+    name:'json',
+    age:79,
+    sex:"BOY",
+    friends:['jack','friend','pack']
+}
+let {name,age,sex}=obj       
+console.log(name,age,sex)//'json' 79 'BOY'
 
 
-    // 冒号相当于给获取的解构设置了一个别名(变量名):创建了一个叫做nianling的变量存储了obj.age的值
-    let obj1={age:80}
-    let {age:nianling}=obj1
-    console.log(nianling);//80
+// 冒号相当于给获取的解构设置了一个别名(变量名):创建了一个叫做nianling的变量存储了obj.age的值
+let obj1={age:80}
+let {age:nianling}=obj1
+console.log(nianling);//80
 
-    // 给获取的结果设置默认值(没有这个值，走默认值)
-    let {height="180CM"}=obj
-    console.log(height);//180CM
+// 给获取的结果设置默认值(没有这个值，走默认值)
+let {height="180CM"}=obj
+console.log(height);//180CM
 
-    // 多维运算获取
-    let obj3={
-        names:"名称",
-        friends:['jack',"jason","pack"]
-    }
-    let {names,friends:[firstFirend]}=obj3
-    console.log(names,firstFirend);
+// 多维运算获取
+let obj3={
+    names:"名称",
+    friends:['jack',"json","pack"]
+}
+let {names,friends:[firstFirend]}=obj3
+console.log(names,firstFirend);
 
-    // 后台数据解构
-    let data={
-        "code":0,
-        "data":{
-            "today":"2019-09-09",
-            "data":[{
-                "data":"2019-07-17",
-                "number":"17",
-                "weekday":"\u661f\u671f\u4e09"
-            },{
-                "data":"2019-07-18",
-                "number":"1",
-                "weekday":"\u661f\u671f\u56db"
-            }]
-        },
-        "version":"12893-449"
-    }
+// 后台数据解构
+let data={
+    "code":0,
+    "data":{
+        "today":"2019-09-09",
+        "data":[{
+            "data":"2019-07-17",
+            "number":"17",
+            "weekday":"\u661f\u671f\u4e09"
+        },{
+            "data":"2019-07-18",
+            "number":"1",
+            "weekday":"\u661f\u671f\u56db"
+        }]
+    },
+    "version":"12893-449"
+}
 
-    // 方法一:
-    // let code=data.code,
-    // today=data.data.today,
-    // data=data.data.data;
+// 方法一:
+// let code=data.code,
+// today=data.data.today,
+// data=data.data.data;
 
-    // 方法二:
-    let {code,data:{today,data:calenderData}}=data;
-    console.log(code,today,calenderData)
+// 方法二:
+let {code,data:{today,data:calenderData}}=data;
+console.log(code,today,calenderData)
 
-    // 方法三:
-    /*  calenderData.forEach(item=>{
-        // let weekday=item.weekday,
-        // data=item.data;
-        let {weekday,data}=item
-        console.log(weekday,data);
-    }) */
+// 方法三:
+/*  calenderData.forEach(item=>{
+    // let weekday=item.weekday,
+    // data=item.data;
+    let {weekday,data}=item
+    console.log(weekday,data);
+}) */
 
-    calenderData.forEach(({weekday,data})=>{
-        console.log(weekday,data,`00`);
-    })
+calenderData.forEach(({weekday,data})=>{
+    console.log(weekday,data,`00`);
+})
 
 
-    // ES6中 ...的作用
-    // 扩展运算符(多用在解构赋值中)
-    // 展开运算符(多用在传递实参中)
-    // 剩余运算符(多用在接收实参中)
+// ES6中 ...的作用
+// 扩展运算符(多用在解构赋值中)
+// 展开运算符(多用在传递实参中)
+// 剩余运算符(多用在接收实参中)
 
-    // 解构赋值
-    let [n,...m]=[12,34,56]
-    // console.log(n,m);//n:12,m:[34,56]
+// 解构赋值
+let [n,...m]=[12,34,56]
+// console.log(n,m);//n:12,m:[34,56]
 
-    // 传递实参
-    let ary=[12,34,56,78];
-    let min=Math.min(...ary)
+// 传递实参
+let ary=[12,34,56,78];
+let min=Math.min(...ary)
 
-    // let cloneAry=ary.slice(0)
-    // 数组克隆(浅克隆)
-    let cloneAry=[...ary]
-    console.log(cloneAry);
 
-    // 对象克隆(浅克隆)
-    let obj={
-        name:"jack",
-        age:14
-    }
-    let cloneObj={...obj,sex:"girl",age:10}
-    console.log(cloneObj);
+// 数组克隆(浅克隆)
+// let cloneAry=ary.slice(0)
+let cloneAry=[...ary]
+console.log(cloneAry);
 
-    // 接收实参
-    let fn=(n,...arg)=>{
-        console.log(n,arg);//n:10,ary:[20,30]
-    }
-    fn(10,20,30)
+// 对象克隆(浅克隆)
+let obj={
+    name:"jack",
+    age:14
+}
+let cloneObj={...obj,sex:"girl",age:10}
+console.log(cloneObj);
 
-    function fn(...arr){
-  //剩余运算符
-  console.log(arr);
- }
- Math.max(...[1,2,3,4,2,3])//展开运算符//4
+// 接收实参
+let fn=(n,...arg)=>{
+    console.log(n,arg);//n:10,ary:[20,30]
+}
+fn(10,20,30)
+
+function fn(...arr){
+//剩余运算符
+console.log(arr);
+}
+Math.max(...[1,2,3,4,2,3])//展开运算符//4
 
 //数组展开运算符应用
  var a=[1,2,30],
@@ -187,7 +188,7 @@ console.log(e,r);//12,58
 
  var obj3={...obj1,...obj2}; 
  var obj4={...obj2,...obj1};
- console.log(obj3,obj4)//{a: 2, c: 3, q: 100, w: 200, C: 300} 
+ console.log(obj3,obj4) //{a: 2, c: 3, q: 100, w: 200, C: 300} 
                        //{q: 100, w: 200, C: 300, a: 2, c: 3}
 </script>
 </body>

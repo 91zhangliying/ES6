@@ -17,7 +17,6 @@ var t1 = ary.forEach(fn); //没有返回值
 console.log(t1) //undefined
 
 
-
 //map  用法
 //1.数组中的末尾加0
 let fn = item => {
@@ -50,7 +49,6 @@ var newArr = arr.map((item) => 1000 + item);
 console.log(newArr); //[1100, 1200, 1300, 1400]
 
 
-
 //some的使用：
 //1.只要有个回调函数的返回值是true，则some的运行结果修饰true  
 //2、一旦有一个回调函数结果是true  则后边的回调就不再执行了
@@ -65,7 +63,6 @@ var bol2 = arr.some((item, index) => {
     return item > 200 //100, 200, 300,大于200就是true 结果就是true后面的不在执行了
 })
 console.log(bol, bol2); //false true
-
 
 
 //every的使用：
@@ -85,7 +82,6 @@ var bol2 = arr.every((item, index) => {
 console.log(bol, bol2); // true false
 
 
-
 //filter  就是条件成立的数组放到一个新的数组中
 // 过滤 把回调函数return值是true的值赋值一份放到新数组中
 let ary = [1, 2, 3, 4]
@@ -96,7 +92,6 @@ let res2 = ary.filter(item => {
     return item <= 2
 })
 console.log(res1, res2); //=[3, 4] (2) [1, 2]
-
 
 
 //reduce 
@@ -127,14 +122,10 @@ let res6 = ary3.reduce((prev, next) => {
 }, 100)
 console.log(res6); //=>200
 
-
-
-
 //Object.is(1, 1)
 Object.is(NaN,NaN)//true
 Object.is(1, 1) //=true
 Object.is(+0, -0) //=>false
-
 
 //Object.assign 是把obj2合并到obj中，返回值是合并后的obj
 var obj = { a: 1 },

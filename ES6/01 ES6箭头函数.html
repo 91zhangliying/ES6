@@ -8,16 +8,32 @@
 </head>
 <body>
     <script>
-        // #### 1.ES6的基础语法
-        // + 1.let和const
-        let a = 12;
+    // ### ES6的基础语法
+    // + 1.let和const
+    /* 
+    let a = 12;
         a = 13;
-        console.log(a); //=>13
+    console.log(a); 
+    */
 
-        // + 2.基于const创建变量，变量存储的值不能被修改(常量)
-        const b = 12;
-        b = 13; //=>Uncaught TypeError: Assignment to constant variable.
-        console.log(b);
+    // 2.基于const创建的变量，变量存储的值不能被修改(常量)
+    /* const b=10;
+             b=14;//报错 =>Uncaught TypeError: Assignment to constant variable.
+    console.log(b); 
+    */
+
+
+    // 1).同一个堆内存地址
+    /* const ary = [1, 2, 3]; // ary对应的值 是 AAFF00
+    ary[0] = 100; //不会报错 因为给ary的是一个地址AAFF00； */
+
+    // 2).新开一个堆内存地址
+    // ary = [];//会报错，ary重新定义一个堆内存地址 AAFF11
+
+    // 3.let和const不能重复声明
+    /* let c=12
+    const c=12
+    console.log(c);//Identifier 'c' has already been declared */
 
         //#### 2.let和var的区别
         // + 1.let不存在变量提升(当前作用域中不能在let声明前使用变量)
@@ -44,24 +60,23 @@
            const fn=n=>n*10; 
         */
 
-        function fn(n) {
+        /* function fn(n) {
             return function(m) {
                 return m + (++n);
             }
         }
         //改写箭头函数：
-        const fn = (n) => m => m + (++n)
+        const fn = (n) => m => m + (++n) */
 
         /*  >4.箭头函数中没有arguments，但是可以基于剩余运算符获取实参集合，而且ES6中式支持给形参设置默认值的
          - ...arg:剩余运算符（把除第一项外的，其他剩余实参信息都存储到args这个数组集合中） */
 
-        let obj = {};
+        /* let obj = {};
         let fn = (context) => {
-            console.log(arguments);
-            //=>Uncaughe ReferenceError:arguments is not defined 箭头函数中没有arguments    
+            console.log(arguments);//=>Uncaughe ReferenceError:arguments is not defined 箭头函数中没有arguments    
         };
         fn(obj, 10, 20, 30);
-        fn();
+        fn(); */
 
         let obj = {};
         let fn = (context = window, ...args) => {
@@ -281,6 +296,7 @@
       }
     }
   };
+
 
   function fn3(...ary) {
     console.log(ary);
